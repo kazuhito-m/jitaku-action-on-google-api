@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/token")
 public class TokenController {
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String issuanceToken(@RequestParam("grant_type") String grantType) {
         String jsonTemplate = """
