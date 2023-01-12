@@ -8,6 +8,7 @@ import java.net.InetSocketAddress;
 public class WakeOnLan {
     private static final int OCTET_LENGTH_OF_MAC_ADDRESS = 6;
     private static final String DEFAULT_MAC_ADDRESS_SEPARATOR = ":";
+    private static final int REPEAT_COUNT_OF_MAC_ADDRESS = 16;
 
     public void sendMagickPacket(String macAddress, String ipAddress) throws IOException {
         InetSocketAddress address = new InetSocketAddress(ipAddress, 9);
@@ -20,7 +21,7 @@ public class WakeOnLan {
     private byte[] generateMagickPacket(String macAddress) {
         byte[] macAddressBytes = convertMacAddressBytes(macAddress);
 
-        byte[] packet = new byte[102];
+        byte[] packet = new byte[OCTET_LENGTH_OF_MAC_ADDRESS * (1 + REPEAT_COUNT_OF_MAC_ADDRESS)];
         int index = 0;
         for (int i = 0; i < macAddressBytes.length; i++) {
             packet[index++] = (byte) 0xff;
@@ -37,8 +38,7 @@ public class WakeOnLan {
 
     private byte[] convertMacAddressBytes(String macAddress) {
         String[] macArray = macAddress.split(DEFAULT_MAC_ADDRESS_SEPARATOR);
-        if (macArray.length != OCTET_LENGTH_OF_MAC_ADDRESS)
-            throw new RuntimeException("MACアドレスが不正");
+        if (macArray.length != OCTET_LENGTH_OF_MAC_ADDRESS) throw new RuntimeException("MACアドレスが不正");
 
         byte[] macAddressByte = new byte[macArray.length];
         for (int i = 0; i < macArray.length; i++) {
