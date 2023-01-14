@@ -9,6 +9,6 @@ class WakeOnLanTest {
     void 指定したMacアドレスにマジックパケットを送ることができる() throws IOException {
         WakeOnLan sut = new WakeOnLan();
 
-        sut.sendMagickPacket("aa-bb-cc-ce-e0-35", "192.168.1.255");
+        sut.sendMagickPacket("ec-21-e5-ce-e0-35", "192.168.1.255");
     }
 }
