@@ -7,7 +7,7 @@ import java.net.InetSocketAddress;
 
 public class WakeOnLan {
     private static final int OCTET_LENGTH_OF_MAC_ADDRESS = 6;
-    private static final String DEFAULT_MAC_ADDRESS_SEPARATOR = ":";
+    private static final String DEFAULT_MAC_ADDRESS_SEPARATOR = "-";
     private static final int REPEAT_COUNT_OF_MAC_ADDRESS = 16;
 
     public void sendMagickPacket(String macAddress, String ipAddress) throws IOException {
