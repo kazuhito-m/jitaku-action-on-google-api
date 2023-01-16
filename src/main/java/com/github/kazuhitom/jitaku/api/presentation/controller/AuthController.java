@@ -11,9 +11,9 @@ import java.net.URI;
 public class AuthController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public String issuanceAuthorizationGrant(@RequestParam("redirect_uri") String redirectUrl,
+    public String issuanceAuthorizationGrant(@RequestParam("redirect_uri") URI redirectUrl,
                                              @RequestParam("state") String state) {
-        URI fixedUri = UriComponentsBuilder.fromUriString(redirectUrl)
+        URI fixedUri = UriComponentsBuilder.fromUri(redirectUrl)
                 .queryParam("code", "1234567890")
                 .queryParam("state", state)
                 .build()
