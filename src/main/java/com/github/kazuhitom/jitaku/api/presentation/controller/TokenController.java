@@ -4,6 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/token")
 public class TokenController {
@@ -16,7 +19,7 @@ public class TokenController {
                 """;
         return switch (grantType) {
             case "authorization_code" -> String.format(jsonTemplate, ", \"refresh_token\": \"1234567890\"");
-            case "grant_type" -> String.format(jsonTemplate, "");
+            case "refresh_token" -> String.format(jsonTemplate, "");
             default -> throw new IllegalArgumentException("Unrecognized parameter value.");
         };
     }
