@@ -16,7 +16,7 @@ public class FulfillmentController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String fulfillment(@RequestBody FulfillmentRequest request) {
-        LOGGER.debug("requestId:{}, intent:{}", request.requestId(), request.inputs().get(0).intent());
+        LOGGER.info("requestId:{}, intent:{}", request.requestId(), request.inputs().get(0).intent());
         return "{}";
     }
 }
