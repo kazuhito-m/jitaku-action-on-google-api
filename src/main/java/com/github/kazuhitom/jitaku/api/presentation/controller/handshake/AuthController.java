@@ -1,4 +1,4 @@
-package com.github.kazuhitom.jitaku.api.presentation.controller;
+package com.github.kazuhitom.jitaku.api.presentation.controller.handshake;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
