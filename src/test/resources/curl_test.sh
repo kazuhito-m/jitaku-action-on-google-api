@@ -11,4 +11,4 @@ cd ${SCRIPT_DIR}
 curl -X POST "${SERVER}/fulfillment" \
   -v \
   -H "Content-Type: application/json" \
-  -d '{"requestId":"1234567890", "inputs":[{ "intent":"action.devices.SYNC" }]}'
+  -d @fulfillment_request_sample.json

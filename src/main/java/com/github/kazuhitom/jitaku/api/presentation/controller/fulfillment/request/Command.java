@@ -2,8 +2,8 @@ package com.github.kazuhitom.jitaku.api.presentation.controller.fulfillment.requ
 
 import java.util.List;
 
-public record FulfillmentRequest(
-        String requestId,
-        List<Input> inputs
+public record Command(
+        List<Device> devices,
+        Execution execution
 ) {
 }
