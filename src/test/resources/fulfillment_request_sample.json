@@ -1,12 +1,24 @@
 {
-  "requestId": "6894439706274654514",
+  "requestId": "6894439706274654516",
   "inputs": [
     {
-      "intent": "action.devices.QUERY",
+      "intent": "action.devices.EXECUTE",
       "payload": {
-        "devices": [
+        "commands": [
           {
-            "id": "123"
+            "devices": [
+              {
+                "id": "123"
+              }
+            ],
+            "execution": [
+              {
+                "command": "action.devices.commands.OnOff",
+                "params": {
+                  "on": true
+                }
+              }
+            ]
           }
         ]
       }
