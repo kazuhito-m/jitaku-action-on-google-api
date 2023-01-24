@@ -9,6 +9,6 @@ SCRIPT_DIR=$(
 cd ${SCRIPT_DIR}
 
 curl -X POST "${SERVER}/fulfillment" \
-  -v \
+  \
   -H "Content-Type: application/json" \
-  -d @fulfillment_request_sample.json
+  -d @fulfillment_request_sample.json | jq
