@@ -1,8 +1,12 @@
 package com.github.kazuhitom.jitaku.api.presentation.controller.fulfillment;
 
+import com.github.kazuhitom.jitaku.api.domain.model.action.Trait;
 import com.github.kazuhitom.jitaku.api.presentation.controller.fulfillment.request.FulfillmentRequest;
 import com.github.kazuhitom.jitaku.api.presentation.controller.fulfillment.request.Input;
 import com.github.kazuhitom.jitaku.api.presentation.controller.fulfillment.response.FulfillmentResponse;
+import com.github.kazuhitom.jitaku.api.presentation.controller.fulfillment.response.execute.Command;
+import com.github.kazuhitom.jitaku.api.presentation.controller.fulfillment.response.execute.ExecutePayload;
+import com.github.kazuhitom.jitaku.api.presentation.controller.fulfillment.response.execute.States;
 import com.github.kazuhitom.jitaku.api.presentation.controller.fulfillment.response.query.DeviceQueryResponse;
 import com.github.kazuhitom.jitaku.api.presentation.controller.fulfillment.response.query.QueryPayload;
 import com.github.kazuhitom.jitaku.api.presentation.controller.fulfillment.response.sync.Device;
@@ -32,7 +36,7 @@ public class FulfillmentController {
         return switch (input.intent()) {
             case SYNC -> sync(request.requestId());
             case QUERY -> query(request.requestId(), input);
-            case EXECUTE -> null;
+            case EXECUTE -> execute(request.requestId(), input);
             default -> throw new IllegalStateException("Illegal intent type.");
         };
     }
@@ -46,7 +50,7 @@ public class FulfillmentController {
                                 new Device(
                                         "123",
                                         "action.devices.types.SWITCH",
-                                        List.of("action.devices.traits.OnOff"),
+                                        List.of(Trait.OnOff),
                                         new Name("PC Switch"),
                                         true,
                                         new DeviceInfo(
@@ -71,6 +75,21 @@ public class FulfillmentController {
                                         "SUCCESS",
                                         true,
                                         true
+                                )
+                        )
+                )
+        );
+    }
+
+    private FulfillmentResponse execute(String requestId, Input input) {
+        return new FulfillmentResponse(
+                requestId,
+                new ExecutePayload(
+                        List.of(
+                                new Command(
+                                        List.of(input.payload().commands().get(0).devices().get(0).id()),
+                                        "SUCCESS",
+                                        new States(true, true)
                                 )
                         )
                 )
